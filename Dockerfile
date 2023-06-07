@@ -47,11 +47,34 @@ RUN \
     /var/tmp/* \
     /tmp/*
 
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive \
-    apt-get install zsh git wget curl vim neovim dialog neofetch gcc make ruby-dev iputils-ping
+# Install other apps with dependencies
+RUN \
+  echo "**** install other packages ****" && \
+  add-apt-repository -y ppa:mozillateam/ppa && \
+  apt-get update && \
+  DEBIAN_FRONTEND=noninteractive \
+  apt-get install -y \
+  zsh \
+  git \
+  wget \
+  curl \
+  vim  \
+  neovim \
+  dialog \
+  neofetch \
+  dnsutils \
+  bat
 
-RUN gem install colorls
+# Install colorls and dependencies
+RUN \
+  echo "**** install colorls gem with dependencies ****" && \
+  apt-get update && \
+  DEBIAN_FRONTEND=noninteractive \
+  apt-get install -y \
+  gcc \
+  make \
+  ruby-dev && \
+  gem install colorls
 
 # Install Tailscale
 

@@ -63,6 +63,7 @@ RUN \
   dialog \
   neofetch \
   dnsutils \
+  iputils-ping \
   bat
 
 # Install colorls and dependencies
